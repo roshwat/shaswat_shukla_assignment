@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import AuthContext from './AuthContext';
 import userData from './userData';
+import { useHistory } from 'react-router-dom';
 
 export default function ContactList(props){
 
@@ -9,7 +10,7 @@ export default function ContactList(props){
     const [loading, setLoading] = useState(false);
     const [allDone, setAlldone] = useState(false);
     const auth = React.useContext(AuthContext);
-
+    const history = useHistory();
     window.onscroll = () => {
         if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
             if(count >= 50) {
@@ -44,6 +45,7 @@ export default function ContactList(props){
         <section>
             <button onClick={()=>{
                 auth.setAuth({username:undefined},false);
+                history.push('/home')
             }}> Logout </button>
             {
             userList.map((user,index)=>{
