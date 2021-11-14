@@ -43,10 +43,10 @@ export default function ContactList(props){
       }
     return(
         <section>
-            <button onClick={()=>{
+            {auth.isLoggedIn && <button onClick={()=>{
                 auth.setAuth({username:undefined},false);
                 history.push('/home')
-            }}> Logout </button>
+            }}> Logout </button>}
             {
             userList.map((user,index)=>{
                 return (

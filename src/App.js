@@ -12,22 +12,22 @@ const history = createBrowserHistory();
 function App() {
   
   return (
-    <AuthProvider>
       <div className="App">
         <header className="App-header">
           <Router history={history}>
+            <AuthProvider>
               <Switch>
                 <Route exact path="/">
-                  <Login/>
+                    <Login/>
                 </Route>
                 <AuthenticatedRoute exact path="/home">
-                  <ContactList/>
+                    <ContactList/>
                 </AuthenticatedRoute>
               </Switch>
+            </AuthProvider>
           </Router>
         </header>
       </div>
-    </AuthProvider>
   );
 }
 
