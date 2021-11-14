@@ -1,24 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { Router, Route, Switch } from "react-router-dom";
+import AuthenticatedRoute from './AuthenticatedRoute';
+import { createBrowserHistory } from "history";
+import  ContactList  from './ContactList';
+import { Login } from './Login';
+import { AuthProvider } from './AuthContext';
 
+
+const history = createBrowserHistory();
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <div className="App">
+        <header className="App-header">
+          <Router history={history}>
+              <Switch>
+                <Route exact path="/">
+                  <Login/>
+                </Route>
+                <AuthenticatedRoute exact path="/home">
+                  <ContactList/>
+                </AuthenticatedRoute>
+              </Switch>
+          </Router>
+        </header>
+      </div>
+    </AuthProvider>
   );
 }
 
